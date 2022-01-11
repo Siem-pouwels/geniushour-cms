@@ -3,3 +3,14 @@
     margin-right: auto;
     width: 25rem;
 }
+
+.SignUp {
+    margin-left: auto;
+    margin-right: auto;
+    width: 25rem;
+}
+
+.BtnPrimary{
+    background-color: brown !important; 
+    color: orange !important; 
+}
