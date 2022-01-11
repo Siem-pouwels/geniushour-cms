@@ -1,5 +1,12 @@
+body {
+    background-color: black;
+}
 .LoginCard {
     margin-left: auto;
     margin-right: auto;
     width: 25rem;
+}
+
+h1 {
+    color: white;
 }

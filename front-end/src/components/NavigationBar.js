@@ -23,6 +23,15 @@ const NavigationBar = () => {
                         <LinkContainer to='/login'>
                             <Nav.Link>Login</Nav.Link>
                         </LinkContainer>
+                        <LinkContainer to='/dashboard'>
+                            <Nav.Link>Dashboard</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/projects'>
+                            <Nav.Link>Projects</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/students'>
+                            <Nav.Link>Students</Nav.Link>
+                        </LinkContainer>
                         {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Divider />

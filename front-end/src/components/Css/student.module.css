@@ -1,0 +1,35 @@
+.StudentNumber {
+    float: left;
+    margin-left: 17%;
+    height: 100px;
+    color: white;
+}
+.StudentName {
+    float: left;
+    margin-left: 17%;
+    height: 100px;
+    color: white;
+}
+
+.StudentClass {
+    float: left;
+    height: 100px;
+    margin-left: 17%;
+    color: white;
+}
+
+.ProjectsLabel {
+    color: white;
+    position: relative;
+    right: 30%;
+}
+
+.Table {
+    width: 80%;
+    position: relative;
+    left: 10%;
+}
+
+.Comments {
+    color: white;
+}
