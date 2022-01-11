@@ -1,18 +1,24 @@
-import React, { Component, useState, SyntheticEvent } from "react";
-import { Form, FormGroup, FormLabel, FormText, FormControl, Button, Container, Card } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button, Card } from 'react-bootstrap';
 import classes from './Css/Main.module.css';
 import axios from 'axios'
+import Cookies from 'js-cookie';
+import Environment from '../Environment';
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const env = new Environment;
 
     function handleSubmit(event) {
         event.preventDefault();
         const user = { email: email, password: password };
-        axios.post('http://localhost:8000/api/login', user, {
-            authentication: 'include'
-        })
+        axios.post(env.baseUrl + 'login', user).then(function (response) {
+            Cookies.set('Bearertoken', response.data.token);
+            Cookies.set('Role', response.data.user.role);
+        }, (error) => {
+            console.log(error);
+        });
     }
     return (
         <Card className={classes.LoginCard}>
@@ -39,7 +45,7 @@ export default function Login() {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button className={classes.BtnPrimary} variant="primary" type="submit">
                         Login
                     </Button>
                 </Form>

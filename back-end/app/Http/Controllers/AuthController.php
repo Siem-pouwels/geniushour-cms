@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function signUp(Request $request)
     {
         $fields = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string|confirmed|min:6',
+            'password_confirmation' => 'required| min:6'
         ]);
 
         $user = User::create([
@@ -24,7 +25,7 @@ class AuthController extends Controller
             'password' => bcrypt($fields['password'])
         ]);
 
-        $token = $user->createToken('accestoken')->plainTextToken;
+        $token = $user->createToken('accestoken', ['role:student'])->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -49,7 +50,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('myapptoken', ['role:' . $user->role])->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -59,7 +60,7 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::user()->tokens->each(function ($token, $key) {
             $token->delete();
