@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,8 @@ Route::group(['middleware' => ['checkRole:teacher']], function () {
     Route::get('student', function () {
         return response()->json('test');
     });
+});
+
+Route::group(['prefix' => 'projects'], function () {
+    Route::get('', [ProjectsController::class, 'get']);
 });

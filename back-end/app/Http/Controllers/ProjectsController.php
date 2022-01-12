@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Project;
+use Illuminate\Http\Request;
+
+class ProjectsController extends Controller
+{
+    public function get()
+    {
+        return response()->json(Project::get());
+    }
+}
