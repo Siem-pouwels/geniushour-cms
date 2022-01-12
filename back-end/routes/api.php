@@ -28,3 +28,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 });
+
+Route::group(['middleware' => ['checkRole:teacher']], function () {
+    Route::get('student', function () {
+        return response()->json('test');
+    });
+});
