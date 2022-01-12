@@ -51,7 +51,7 @@ function ProjectsOverview() {
                 </tr>
             </tbody>
             <br></br>
-            <Button>Add new project</Button>
+            <Button className={classes.AddProjectBtn}>Add new project</Button>
         </Table>
         
     )

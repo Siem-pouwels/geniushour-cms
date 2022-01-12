@@ -33,3 +33,8 @@
 .Comments {
     color: white;
 }
+
+.AddProjectBtn, .AddProjectBtn:hover, .AddProjectBtn:active, .AddProjectBtn:visited {
+    background-color: #30363D;
+    border: 2px solid blue !important;
+}
