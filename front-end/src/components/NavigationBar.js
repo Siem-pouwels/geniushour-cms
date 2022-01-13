@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
+import Logo from '../logo.png';
 
 
 const NavigationBar = () => {
@@ -9,7 +10,7 @@ const NavigationBar = () => {
         <Navbar variant="dark" bg="dark" expand="lg">
             <Container>
                 <LinkContainer to='/'>
-                    <Navbar.Brand>Genius-hour-CMS</Navbar.Brand>
+                    <Navbar.Brand><img src={Logo} height="70px"></img></Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -22,6 +23,15 @@ const NavigationBar = () => {
                         </LinkContainer>
                         <LinkContainer to='/login'>
                             <Nav.Link>Login</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/dashboard'>
+                            <Nav.Link>Dashboard</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/projects'>
+                            <Nav.Link>Projects</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/students'>
+                            <Nav.Link>Students</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to='/signup'>
                             <Nav.Link>Sign up</Nav.Link>
