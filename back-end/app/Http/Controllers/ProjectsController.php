@@ -51,6 +51,16 @@ class ProjectsController extends Controller
 
     public function edit(Request $request, $id)
     {
+        $check = Project::find($id);
+        if ($check === null) {
+
+            $errorMessage = [
+                'message' => "Project doesn't exist."
+            ];
+
+            return response($errorMessage, 400);
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:3',
             'category' => 'required|string',
@@ -81,6 +91,15 @@ class ProjectsController extends Controller
 
     public function delete(Request $request, $id)
     {
+        $check = Project::find($id);
+        if ($check === null) {
+
+            $errorMessage = [
+                'message' => "Project doesn't exist."
+            ];
+
+            return response($errorMessage, 400);
+        }
 
         $project = Project::find($id)->delete();
         
