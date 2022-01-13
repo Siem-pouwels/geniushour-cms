@@ -19,13 +19,13 @@ class CreateProjectprogressTable extends Migration
             $table->integer('amountofhours');
             $table->string('title');
             $table->string('description');
-            $table->timestamps();
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
             $table->unsignedBigInteger('teachergroups_id');
             $table->foreign('teachergroups_id')->references('id')->on('teachergroups');
             $table->unsignedBigInteger('studentgroups_id');
             $table->foreign('studentgroups_id')->references('id')->on('studentgroups');
+            $table->timestamps();
         });
     }
 

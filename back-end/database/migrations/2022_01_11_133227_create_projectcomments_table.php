@@ -17,11 +17,11 @@ class CreateProjectcommentsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('text');
-            $table->timestamps();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('projectprogress_id');
             $table->foreign('projectprogress_id')->references('id')->on('projectprogress');
+            $table->timestamps();
         });
     }
 
