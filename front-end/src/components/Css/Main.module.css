@@ -21,3 +21,32 @@ body {
 h1 {
     color: white;
 }
+
+.OverviewDashboard {
+    display: inline-block;
+    background-color: red;
+    width: 30%;
+    height: 250px;
+    position: relative;
+    left: 15%;
+}
+
+.CommentsDashboard {
+    display: inline-block;
+    background-color: blue;
+    width: 30%;
+    height: 250px;
+    position: relative;
+    left: 15%;
+    top: 25px;
+}
+
+.StatsDashboard {
+    display: inline-block;
+    background-color: lime;
+    width: 30%;
+    height: 525px;
+    position: relative;
+    left: 25%;
+    bottom: 249px;
+}
