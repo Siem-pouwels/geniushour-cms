@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\GroupsController;
+use App\Http\Controllers\StudentGroupsController;
+use App\Http\Controllers\TeacherGroupsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +44,11 @@ Route::group(['prefix' => 'projects'], function () {
     Route::post('', [ProjectsController::class, 'create']);
     Route::post('edit/{id}', [ProjectsController::class, 'edit']);
     Route::post('delete/{id}', [ProjectsController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'group'], function () {
+    Route::get('', [GroupsController::class, 'get']);
+    Route::post('create', [GroupsController::class, 'create']);
 });
 
 Route::group(['prefix' => 'student'], function () {
