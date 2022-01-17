@@ -15,8 +15,8 @@ class CreateTeachergroupsTable extends Migration
     {
         Schema::create('teachergroups', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('type');
+            $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('id')->on('groups');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
