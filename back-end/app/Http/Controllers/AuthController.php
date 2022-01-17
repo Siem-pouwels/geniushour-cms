@@ -13,6 +13,7 @@ class AuthController extends Controller
     {
         $fields = $request->validate([
             'name' => 'required|string',
+            'surname' => 'required|string',
             'email' => 'required|string|unique:users,email',
             'password' => 'required|string|confirmed|min:6',
             'password_confirmation' => 'required| min:6'
@@ -20,6 +21,7 @@ class AuthController extends Controller
 
         $user = User::create([
             'name' => $fields['name'],
+            'surname' => $fields['surname'],
             'email' => $fields['email'],
             'role' => 'student',
             'password' => bcrypt($fields['password'])
