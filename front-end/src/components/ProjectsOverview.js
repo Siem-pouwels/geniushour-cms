@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FormGroup, Form, FormCheck } from 'react-bootstrap';
+import { FormGroup, Form, FormCheck, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import classes from './Css/student.module.css';
 
@@ -34,6 +34,7 @@ function ProjectsOverview() {
 const columns = data[0] && Object.keys(data[0]);
     return (
         <div>
+          <Link to={'/projects/create'}><Button>Create Project</Button></Link>
         <div>
           <input
             type='text'

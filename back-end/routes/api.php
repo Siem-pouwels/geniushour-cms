@@ -39,7 +39,7 @@ Route::group(['middleware' => ['checkRole:teacher']], function () {
 Route::group(['prefix' => 'projects'], function () {
     Route::get('', [ProjectsController::class, 'get']);
     Route::get('/{id}', [ProjectsController::class, 'getProject']);
-    Route::post('', [ProjectsController::class, 'create']);
+    Route::post('create', [ProjectsController::class, 'create']);
     Route::post('edit/{id}', [ProjectsController::class, 'edit']);
     Route::post('delete/{id}', [ProjectsController::class, 'delete']);
 });

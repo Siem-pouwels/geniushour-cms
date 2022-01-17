@@ -52,9 +52,9 @@ function ProjectsDetails() {
           <Form.Label>Category</Form.Label>
           <input type="text" value={category} onChange={e => setCategory(e.target.value)} />
           <Form.Label>Time Spent</Form.Label>
-          <input type="text" value={timeSpent} onChange={e => setTimeSpent(e.target.value)} />
+          <input type="number" value={timeSpent} onChange={e => setTimeSpent(e.target.value)} />
           <Form.Label>Time Total</Form.Label>
-          <input type="text" value={timeTotal} onChange={e => setTimeTotal(e.target.value)} />
+          <input type="number" value={timeTotal} onChange={e => setTimeTotal(e.target.value)} />
           <Form.Label>Summary</Form.Label>
           <input type="text" value={summary} onChange={e => setSummary(e.target.value)} />
         <Button type="submit">
