@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class GroupsController extends Controller
 {
-    public function create(Request $request, $id)
+    public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3',
+            'name' => 'required|string|min:5',
             'type' => 'required|string',
         ]);
 
@@ -23,13 +25,13 @@ class GroupsController extends Controller
 
         }
 
-        $Studentgroup = StudentGroup::create([
+        $Group = Group::create([
             'name' => $request['name'],
             'type' => $request['type']
         ]);
 
         $response = [
-            'project' => $Studentgroup
+            'project' => $Group
         ];
 
         return response($response, 201);
