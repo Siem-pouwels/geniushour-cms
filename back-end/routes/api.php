@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\FilesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,4 +43,8 @@ Route::group(['prefix' => 'projects'], function () {
     Route::post('create', [ProjectsController::class, 'create']);
     Route::post('edit/{id}', [ProjectsController::class, 'edit']);
     Route::post('delete/{id}', [ProjectsController::class, 'delete']);
+});
+
+Route::group(['prefix' => 'files'], function () {
+    Route::post('', [FilesController::class, 'post']);
 });

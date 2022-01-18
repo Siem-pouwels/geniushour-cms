@@ -16,6 +16,7 @@ import ProjectsDetails from './components/ProjectsDetails';
 import ProjectsCreate from './components/ProjectsCreate';
 import StudentsOverview from './components/StudentsOverview';
 import StudentsDetails from './components/StudentsDetails';
+import ImgUpload from './components/ImgUpload';
 
 class App extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class App extends Component {
           <Route path="/students/1" element={<StudentsDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/image" element={<ImgUpload />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
