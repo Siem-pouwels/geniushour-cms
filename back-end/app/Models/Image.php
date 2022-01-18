@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ImagePool extends Model
+class Image extends Model
 {
     use HasFactory;
-    protected $table = 'imagepool';
+    protected $table = 'images';
     protected $fillable = [
         'imageURL',
+        'name'
     ];
 }
