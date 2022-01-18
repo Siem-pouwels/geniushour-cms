@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 import Logo from '../logo.png';
+import classes from './Css/Main.module.css'
 
 
 const NavigationBar = () => {
     return (
-        <Navbar variant="dark" bg="dark" expand="lg">
+        <Navbar variant="dark" bg="dark" expand="lg" className={classes.Navbar}>
             <Container>
                 <LinkContainer to='/'>
                     <Navbar.Brand><img src={Logo} height="70px"></img></Navbar.Brand>

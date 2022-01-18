@@ -38,3 +38,12 @@
     background-color: #30363D;
     border: 2px solid blue !important;
 }
+
+.FilterBoxes {
+    display: flex !important;
+    color: white !important;
+}
+
+.FilterBox {
+    margin-right: 4%;
+}

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import classes from './Css/Main.module.css';
 
 
 export default class ProjectsCreate extends Component {
@@ -55,21 +56,42 @@ export default class ProjectsCreate extends Component {
  }
  render() {
     return (
+        <Card className={classes.CreateProjectCard}>
+            <Card.Body>
+                <Card.Title>Create Project</Card.Title>
         <Form onSubmit={this.onSubmit}>
-        <Form.Label>Name</Form.Label>
+          <div>
+        <Form.Label>Name:</Form.Label>
+        </div>
         <input type="text" value={this.state.name} onChange={this.onChangeName} />
-        <Form.Label>Category</Form.Label>
+        <br></br>
+        <Form.Label>Category:</Form.Label>
+        <div>
         <input type="text" value={this.state.category} onChange={this.onChangeCategory} />
-        <Form.Label>Time Spent</Form.Label>
+        <br></br>
+        </div>
+        <Form.Label>Time Spent:</Form.Label>
+        <div>
         <input type="number" value={this.state.timeSpent} onChange={this.onChangeTimeSpent} />
-        <Form.Label>Time Total</Form.Label>
+        <br></br>
+        </div>
+        <Form.Label>Time Total:</Form.Label>
+        <div>
         <input type="number" value={this.state.timeTotal} onChange={this.onChangeTimeTotal} />
-        <Form.Label>Summary</Form.Label>
+        <br></br>
+        </div>
+        <Form.Label>Summary:</Form.Label>
+        <div>
         <input type="text" value={this.state.summary} onChange={this.onChangeSummary} />
+        <br></br>
+        </div>
+        <br></br>
       <Button type="submit">
         Create Project
       </Button>
     </Form>
+    </Card.Body>
+    </Card>
     );
 }
 }

@@ -1,6 +1,9 @@
 body {
     background-color: #0D1117 !important;
 }
+.Navbar {
+    background-color: #0C0C0C !important;
+}
 .LoginCard {
     margin-left: auto;
     margin-right: auto;
@@ -11,6 +14,16 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 25rem;
+}
+
+.CreateProjectCard {
+    margin-left: auto;
+    margin-right: auto;
+    width: 45rem;
+    text-align: center;
+    background-color: rgb(19, 24, 32) !important;
+    color: white;
+    border: 1px solid white !important;
 }
 
 .BtnPrimary{

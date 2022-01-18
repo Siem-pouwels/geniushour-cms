@@ -41,10 +41,10 @@ const columns = data[0] && Object.keys(data[0]);
             value={q}
             onChange={(e) => setQ(e.target.value)}
           />
-              <Form className='d-flex'>
+              <Form className={classes.FilterBoxes}>
               {columns &&
                 columns.map((column) => (
-                  <FormGroup>
+                  <FormGroup className={classes.FilterBox}>
                     <FormCheck
                       label={column}
                       type='checkbox'

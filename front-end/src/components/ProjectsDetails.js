@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Card } from "react-bootstrap";
+import classes from './Css/Main.module.css';
 
 function ProjectsDetails() {
   const {id} = useParams();
@@ -46,21 +47,42 @@ function ProjectsDetails() {
 
 
     return (
+      <Card className={classes.CreateProjectCard}>
+      <Card.Body>
+          <Card.Title>Edit Project</Card.Title>
       <Form onSubmit={onSubmit}>
+        <div>
           <Form.Label>Name</Form.Label>
+          </div>
           <input type="text" value={name} onChange={e => setName(e.target.value)} />
+          <br></br>
+          <div>
           <Form.Label>Category</Form.Label>
+          </div>
           <input type="text" value={category} onChange={e => setCategory(e.target.value)} />
+          <br></br>
+          <div>
           <Form.Label>Time Spent</Form.Label>
+          </div>
           <input type="number" value={timeSpent} onChange={e => setTimeSpent(e.target.value)} />
+          <br></br>
+          <div>
           <Form.Label>Time Total</Form.Label>
+          </div>
           <input type="number" value={timeTotal} onChange={e => setTimeTotal(e.target.value)} />
+          <br></br>
+          <div>
           <Form.Label>Summary</Form.Label>
+          </div>
           <input type="text" value={summary} onChange={e => setSummary(e.target.value)} />
+          <br></br>
+          <br></br>
         <Button type="submit">
           Update Project
         </Button>
       </Form>
+      </Card.Body>
+    </Card>
     );
 }
 export default ProjectsDetails;
