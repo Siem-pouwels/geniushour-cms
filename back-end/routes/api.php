@@ -5,6 +5,7 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\StudentGroupsController;
 use App\Http\Controllers\TeacherGroupsController;
+use App\Http\Controllers\FilesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +42,8 @@ Route::group(['middleware' => ['checkRole:teacher']], function () {
 
 Route::group(['prefix' => 'projects'], function () {
     Route::get('', [ProjectsController::class, 'get']);
-    Route::post('', [ProjectsController::class, 'create']);
+    Route::get('/{id}', [ProjectsController::class, 'getProject']);
+    Route::post('create', [ProjectsController::class, 'create']);
     Route::post('edit/{id}', [ProjectsController::class, 'edit']);
     Route::post('delete/{id}', [ProjectsController::class, 'delete']);
 });
@@ -61,3 +63,7 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::post('create/{id}', [TeacherGroupsController::class, 'create']);
 });
 
+
+Route::group(['prefix' => 'files'], function () {
+    Route::post('', [FilesController::class, 'post']);
+});

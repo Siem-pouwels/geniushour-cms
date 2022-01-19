@@ -13,8 +13,10 @@ import Cookies from 'js-cookie';
 import Environment from './Environment';
 import ProjectsOverview from './components/ProjectsOverview';
 import ProjectsDetails from './components/ProjectsDetails';
+import ProjectsCreate from './components/ProjectsCreate';
 import StudentsOverview from './components/StudentsOverview';
 import StudentsDetails from './components/StudentsDetails';
+import ImgUpload from './components/ImgUpload';
 
 class App extends Component {
   constructor(props) {
@@ -40,11 +42,13 @@ class App extends Component {
           <Route path="/overview" element={<Overview />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/projects" element={<ProjectsOverview />} />
-          <Route path="/projects/1" element={<ProjectsDetails />} />
+          <Route path="/projects/create" element={<ProjectsCreate />} />
+          <Route path="/projects/edit/:id" element={<ProjectsDetails />} />
           <Route path="/students" element={<StudentsOverview />} />
           <Route path="/students/1" element={<StudentsDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/image" element={<ImgUpload />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>

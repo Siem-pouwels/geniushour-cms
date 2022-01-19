@@ -14,6 +14,11 @@ class ProjectsController extends Controller
         return response()->json(Project::get());
     }
 
+    public function getProject($id)
+    {
+        return response()->json(Project::find($id));
+    }
+
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -102,7 +107,7 @@ class ProjectsController extends Controller
         }
 
         $project = Project::find($id)->delete();
-        
+
         $response = [
             'message' => "project has been succesfully deleted."
         ];
