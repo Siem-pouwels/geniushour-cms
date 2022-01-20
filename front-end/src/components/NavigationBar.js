@@ -25,8 +25,11 @@ const NavigationBar = () => {
                         <LinkContainer to='/login'>
                             <Nav.Link>Login</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to='/dashboard'>
-                            <Nav.Link>Dashboard</Nav.Link>
+                        <LinkContainer to='/dashboard-student'>
+                            <Nav.Link>Dashboard Student</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/dashboard-teacher'>
+                            <Nav.Link>Dashboard Teacher</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to='/projects'>
                             <Nav.Link>Projects</Nav.Link>

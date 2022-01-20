@@ -37,7 +37,8 @@ h1 {
 
 .OverviewDashboard {
     display: inline-block;
-    background-color: red;
+    background-color: rgb(19, 24, 32);
+    color: white;
     width: 30%;
     height: 250px;
     position: relative;
@@ -46,7 +47,8 @@ h1 {
 
 .CommentsDashboard {
     display: inline-block;
-    background-color: blue;
+    background-color: rgb(19, 24, 32);
+    color: white;
     width: 30%;
     height: 250px;
     position: relative;
@@ -56,7 +58,8 @@ h1 {
 
 .StatsDashboard {
     display: inline-block;
-    background-color: lime;
+    background-color: rgb(19, 24, 32);
+    color: white;
     width: 30%;
     height: 525px;
     position: relative;

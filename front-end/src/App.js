@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Home from './components/Home';
 import Overview from './components/Overview/Overview';
-import Dashboard from './components/Dashboard';
+import DashboardStudent from './components/DashboardStudent';
+import DashboardTeacher from './components/DashboardTeacher';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavigationBar from './components/NavigationBar';
 import Login from './components/Login';
@@ -40,7 +41,8 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/overview" element={<Overview />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard-student" element={<DashboardStudent />} />
+          <Route path="/dashboard-teacher" element={<DashboardTeacher />} />
           <Route path="/projects" element={<ProjectsOverview />} />
           <Route path="/projects/create" element={<ProjectsCreate />} />
           <Route path="/projects/edit/:id" element={<ProjectsDetails />} />
