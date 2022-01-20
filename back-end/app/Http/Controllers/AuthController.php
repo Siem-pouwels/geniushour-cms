@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function signUp(Request $request)
     {
         $fields = $request->validate([
-            'name' => 'required|string',
+            'first_name' => 'required|string',
             'surname' => 'required|string',
             'email' => 'required|string|unique:users,email',
             'password' => 'required|string|confirmed|min:6',
@@ -20,7 +20,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
-            'name' => $fields['name'],
+            'first_name' => $fields['first_name'],
             'surname' => $fields['surname'],
             'email' => $fields['email'],
             'role' => 'student',
