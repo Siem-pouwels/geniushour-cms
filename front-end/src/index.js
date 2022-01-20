@@ -6,6 +6,5 @@ import { IsLoggedIn } from './services/AuthService'
 
 ReactDOM.render(
   < App />,
-
   document.getElementById('root')
 );

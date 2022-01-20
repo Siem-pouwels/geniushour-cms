@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate, } from 'react-router-dom';
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import axios from 'axios'
 import Home from './components/Home';
 import Overview from './components/Overview/Overview';
@@ -17,55 +17,50 @@ import StudentsOverview from './components/StudentsOverview';
 import StudentsDetails from './components/StudentsDetails';
 import { PrivateRoutes } from './components/PrivateRoutes';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.env = new Environment();
-    this.state = {
-      role: null,
-      isLoggedIn: null,
-    };
-    // this.navigate = useNavigate();
-  }
+function App() {
+  const [role, setRole] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const env = new Environment;
 
-  componentDidMount() {
+  useEffect(() => {
+    if (Cookies.get("Role")) {
+      setRole(Cookies.get("Role"));
+    }
     if (Cookies.get("Bearertoken")) {
       axios.defaults.headers.common = { 'Authorization': 'Bearer ' + Cookies.get("Bearertoken") };
-      this.setState({ isLoggedIn: true });
-      this.setState({ role: Cookies.get("Role") });
+      setIsLoggedIn(true);
+      setRole(Cookies.get("Role"));
     } else {
-      this.setState({ isLoggedIn: false });
+      setIsLoggedIn(false);
     }
-  }
+  })
 
-  render() {
-    const { role, isLoggedIn } = this.state;
-    return (
-      <Router>
-        <NavigationBar data={this.props} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {isLoggedIn ? (
-            <React.Fragment>
-              <Route path="/overview" element={<Overview />} />
-              <Route path="/projects" element={<ProjectsOverview />} />
-              <Route path="/projects/1" element={<ProjectsDetails />} />
-              <Route path="/students" element={<StudentsOverview />} />
-              <Route path="/students/1" element={<StudentsDetails />} />
-            </React.Fragment>
-          ) : (
-            <Route path="/login" element={<Login />} />
-          )}
-          {/* // <Route path="/signup" element={<SignUp />} /> & */}
-          {/* <PrivateRoutes /> */}
-          {/* <Route path="/admin" element={<Admin />} /> */}
-          {/* <Route path="/student-dashboard" element={<StudentDashboard />} />
+  return (
+    <Router>
+      <NavigationBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {isLoggedIn ? (
+          <React.Fragment>
+            <Route path="/overview" element={<Overview />} />
+            <Route path="/projects" element={<ProjectsOverview />} />
+            <Route path="/projects/1" element={<ProjectsDetails />} />
+            <Route path="/students" element={<StudentsOverview />} />
+            <Route path="/students/1" element={<StudentsDetails />} />
+          </React.Fragment>
+        ) : (
+          <Route path="/login" element={<Login />} />
+        )}
+        {/* // <Route path="/signup" element={<SignUp />} /> & */}
+        {/* <PrivateRoutes /> */}
+        {/* <Route path="/admin" element={<Admin />} /> */}
+        {/* <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/teacher-dashboard" element={<TeacherDashboard />} /> */}
 
-          <Route path="*" element={<Login />} />
-        </Routes>
-      </Router>
-    )
-  }
+        <Route path="*" element={<Login />} />
+      </Routes>
+    </Router>
+  )
 }
+
 export default App

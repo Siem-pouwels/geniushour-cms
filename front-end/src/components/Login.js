@@ -5,7 +5,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie';
 import Environment from '../Environment';
 
-export default function Login() {
+export function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -75,3 +75,4 @@ export default function Login() {
         </React.Fragment>
     )
 }
+export default Login
