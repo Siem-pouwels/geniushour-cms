@@ -7,9 +7,9 @@ import { SnackbarProvider } from 'notistack';
 
 ReactDOM.render(
   <SnackbarProvider maxSnack={3}>
+    <UserProvider>
+      < App />
+    </UserProvider>
   </SnackbarProvider>,
-  <UserProvider>
-    < App />
-  </UserProvider>,
   document.getElementById('root')
 );
