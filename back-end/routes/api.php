@@ -48,6 +48,9 @@ Route::group(['prefix' => 'projects'], function () {
 
 Route::group(['prefix' => 'group'], function () {
     Route::get('', [GroupsController::class, 'get']);
+    Route::get('getStudent', [GroupsController::class, 'getStudent']);
+    Route::get('getTeacher', [GroupsController::class, 'getTeacher']);
+    Route::get('getGroups', [GroupsController::class, 'getGroups']);
     Route::post('create', [GroupsController::class, 'create']);
 });
 
