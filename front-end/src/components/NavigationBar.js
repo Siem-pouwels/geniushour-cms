@@ -1,59 +1,25 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
-import axios from 'axios'
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import React, { useContext } from 'react'
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
+import { useNavigate } from "react-router";
 import Logo from '../logo.png';
 import Cookies from 'js-cookie';
-import Button from '@restart/ui/esm/Button';
+import { UserContext } from '../UserContext';
 
-// if (Cookies.get("Bearertoken")) {
-//     axios.defaults.headers.common = { 'Authorization': 'Bearer ' + Cookies.get("Bearertoken") };
-//     this.setState({ isLoggedIn: true });
-// } else {
-//     this.setState({ isLoggedIn: false });
-//     // this.navigate(`/login`);
-// }
-// this.setState({ role: Cookies.get("Role") });
+function NavigationBar() {
+    const [user, setUser] = useContext(UserContext);
+    let navigate = useNavigate();
 
-// axios.get(this.env.baseUrl + 'student');
-
-
-class NavigationBar extends Component {
-    constructor() {
-        super();
-        this.state = {
-            role: null,
-            isLoggedIn: false,
-        };
+    const logout = (e) => {
+        e.preventDefault();
+        if (Cookies.get("Bearertoken")) Cookies.remove("Bearertoken")
+        if (Cookies.get("Role")) Cookies.remove("Role")
+        setUser({ role: null, isLoggedIn: false })
+        navigate('/login')
     }
 
-    componentDidMount() {
-        // console.log(this.props)
-        if (Cookies.get("Bearertoken")) {
-            axios.defaults.headers.common = { 'Authorization': 'Bearer ' + Cookies.get("Bearertoken") };
-            this.setState({ isLoggedIn: true });
-            this.setState({ role: Cookies.get("Role") });
-        } else {
-            this.setState({ isLoggedIn: false });
-        }
-    }
-    logout() {
-        console.log(this.props)
-        if (Cookies.get("Bearertoken")) {
-            Cookies.remove("Bearertoken")
-            Cookies.remove("Role")
-        }
-        if (Cookies.get("Role")) {
-            Cookies.remove("Role")
-        }
-        this.setState({ isLoggedIn: false })
-        this.setState({ role: null })
-    }
-
-    render() {
-        const { role, isLoggedIn } = this.state;
-        return (
+    return (
+        <>
             <Navbar variant="dark" bg="dark" expand="lg">
                 <Container>
                     <LinkContainer to='/'>
@@ -62,8 +28,8 @@ class NavigationBar extends Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            {isLoggedIn ? (
-                                <React.Fragment>
+                            {user.isLoggedIn ? (
+                                <>
                                     <LinkContainer to='/overview'>
                                         <Nav.Link>Overview</Nav.Link>
                                     </LinkContainer>
@@ -79,32 +45,21 @@ class NavigationBar extends Component {
                                     <LinkContainer to='/students'>
                                         <Nav.Link>Students</Nav.Link>
                                     </LinkContainer>
-                                    {/* <LinkContainer to='/signup'>
-                                        <Nav.Link>Sign up</Nav.Link>
-                                    </LinkContainer> */}
-                                    <LinkContainer to='/students'>
-                                        <Button onClick={this.logout}>Logout</Button>
+                                    <LinkContainer to='/'>
+                                        <Nav.Link onClick={logout}>Logout</Nav.Link>
                                     </LinkContainer>
-                                </React.Fragment>
+                                </>
                             ) : (
                                 <LinkContainer to='/login'>
                                     <Nav.Link>Login</Nav.Link>
                                 </LinkContainer>
                             )}
-                            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                        </NavDropdown> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        )
-    }
-    // < Route path = "/overview" element = {< Overview />} />
-    //     < Route path = "/login" element = {< Login />} />
-    //         < Route path = "*" element = {< ErrorPage />} />
+        </>
+    )
 }
 
 export default NavigationBar;

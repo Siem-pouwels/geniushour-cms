@@ -1,61 +1,68 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate, } from 'react-router-dom';
-import React, { Component, useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import Home from './components/Home';
 import Overview from './components/Overview/Overview';
-import Dashboard from './components/Dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavigationBar from './components/NavigationBar';
 import Login from './components/Login';
-import ErrorPage from './components/ErrorPage';
 import SignUp from './components/SignUp';
 import Cookies from 'js-cookie';
-import Environment from './Environment';
 import ProjectsOverview from './components/ProjectsOverview';
 import ProjectsDetails from './components/ProjectsDetails';
 import StudentsOverview from './components/StudentsOverview';
 import StudentsDetails from './components/StudentsDetails';
-import { PrivateRoutes } from './components/PrivateRoutes';
+import { UserContext } from './UserContext';
 
 function App() {
-  const [role, setRole] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const env = new Environment;
+  const [user, setUser] = useContext(UserContext);
 
   useEffect(() => {
-    if (Cookies.get("Role")) {
-      setRole(Cookies.get("Role"));
-    }
-    if (Cookies.get("Bearertoken")) {
+    if (Cookies.get("Bearertoken") && Cookies.get("Role")) {
       axios.defaults.headers.common = { 'Authorization': 'Bearer ' + Cookies.get("Bearertoken") };
-      setIsLoggedIn(true);
-      setRole(Cookies.get("Role"));
-    } else {
-      setIsLoggedIn(false);
+      setUser({ role: Cookies.get("Role"), isLoggedIn: true });
     }
-  })
+    else setUser({ role: null, isLoggedIn: false })
+  }, [user.isLoggedIn])
 
   return (
     <Router>
       <NavigationBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {isLoggedIn ? (
-          <React.Fragment>
-            <Route path="/overview" element={<Overview />} />
-            <Route path="/projects" element={<ProjectsOverview />} />
-            <Route path="/projects/1" element={<ProjectsDetails />} />
-            <Route path="/students" element={<StudentsOverview />} />
-            <Route path="/students/1" element={<StudentsDetails />} />
-          </React.Fragment>
+        {user.isLoggedIn ? (
+          <>
+            {user.role == "student" ? (
+              <>
+                <Route path="/overview" element={<Overview />} />
+                <Route path="/projects" element={<ProjectsOverview />} />
+                <Route path="/projects/1" element={<ProjectsDetails />} />
+                {/* <Route path="/student-dashboard" element={<StudentDashboard />} /> */}
+              </>
+            ) : (null)
+            }
+            {user.role == "teacher" ? (
+              <>
+                <Route path="/overview" element={<Overview />} />
+                <Route path="/projects" element={<ProjectsOverview />} />
+                <Route path="/projects/1" element={<ProjectsDetails />} />
+                <Route path="/students" element={<StudentsOverview />} />
+                {/* <Route path="/teacher-dashboard" element={<TeacherDashboard />} /> */}
+                <Route path="/students/1" element={<StudentsDetails />} />
+              </>
+            ) : (null)
+            }
+            {user.role == "admin" ? (
+              <>
+                {/* <Route path="/admin" element={<Admin />} /> */}
+              </>
+            ) : (null)
+            }
+          </>
         ) : (
           <Route path="/login" element={<Login />} />
         )}
-        {/* // <Route path="/signup" element={<SignUp />} /> & */}
-        {/* <PrivateRoutes /> */}
-        {/* <Route path="/admin" element={<Admin />} /> */}
-        {/* <Route path="/student-dashboard" element={<StudentDashboard />} />
-          <Route path="/teacher-dashboard" element={<TeacherDashboard />} /> */}
+        <Route path="/signup" element={<SignUp />} />
 
         <Route path="*" element={<Login />} />
       </Routes>

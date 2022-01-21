@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from "react-router";
 import classes from './Css/Main.module.css';
 import axios from 'axios'
 import Cookies from 'js-cookie';
 import Environment from '../Environment';
+import { UserContext } from "../UserContext";
 
-export function Login() {
+function Login() {
+    const [user, setUser] = useContext(UserContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const env = new Environment;
-
-    useEffect(() => {
-        if (Cookies.get("Bearertoken")) {
-            axios.defaults.headers.common = { 'Authorization': 'Bearer ' + Cookies.get("Bearertoken") };
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-            // this.navigate(`/login`);
-        }
-    })
+    let navigate = useNavigate();
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -27,13 +20,16 @@ export function Login() {
         axios.post(env.baseUrl + 'login', user).then(function (response) {
             Cookies.set('Bearertoken', response.data.token);
             Cookies.set('Role', response.data.user.role);
-        }, (error) => {
-            console.log(error);
-        });
+            setUser({
+                role: Cookies.get("Role"),
+                isLoggedIn: true
+            });
+            navigate('/')
+        }, (error) => console.log(error))
     }
     return (
-        <React.Fragment>
-            {!isLoggedIn ? (
+        <>
+            {!user.isLoggedIn ? (
                 <Card className={classes.LoginCard}>
                     <Card.Body >
                         <Card.Title>Login</Card.Title>
@@ -72,7 +68,7 @@ export function Login() {
                 </Container>
             )
             }
-        </React.Fragment>
+        </>
     )
 }
 export default Login

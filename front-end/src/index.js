@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { IsLoggedIn } from './services/AuthService'
+import { UserProvider } from './UserContext';
 
 ReactDOM.render(
-  < App />,
+  <UserProvider>
+    < App />
+  </UserProvider>,
   document.getElementById('root')
 );
