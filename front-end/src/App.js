@@ -19,6 +19,7 @@ import StudentsOverview from './components/StudentsOverview';
 import StudentsDetails from './components/StudentsDetails';
 import ImgUpload from './components/ImgUpload';
 
+
 class App extends Component {
   constructor(props) {
     super(props);

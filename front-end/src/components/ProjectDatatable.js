@@ -33,6 +33,7 @@ export default function ProjectDatatable({ data }) {
             {columns.map((column) => (
               <td>{row[column]}</td>
             ))}
+
             <td><Link to={`/projects/edit/${row["id"]}`}><Button variant="warning" value={row['id']}>Edit</Button></Link></td>
             {/* <td><Button variant="danger" value={row['id']} onClick={deleteProject}>Delete</Button></td> */}
           </tr>
