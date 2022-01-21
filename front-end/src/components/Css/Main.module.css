@@ -1,5 +1,8 @@
 body {
-    background-color: #0D1117;
+    background-color: #0D1117 !important;
+}
+.Navbar {
+    background-color: #0C0C0C !important;
 }
 .LoginCard {
     margin-left: auto;
@@ -13,6 +16,16 @@ body {
     width: 25rem;
 }
 
+.CreateProjectCard {
+    margin-left: auto;
+    margin-right: auto;
+    width: 45rem;
+    text-align: center;
+    background-color: rgb(19, 24, 32) !important;
+    color: white;
+    border: 1px solid white !important;
+}
+
 .BtnPrimary{
     background-color: brown !important; 
     color: orange !important; 
@@ -20,4 +33,36 @@ body {
 
 h1 {
     color: white;
+}
+
+.OverviewDashboard {
+    display: inline-block;
+    background-color: rgb(19, 24, 32);
+    color: white;
+    width: 30%;
+    height: 250px;
+    position: relative;
+    left: 15%;
+}
+
+.CommentsDashboard {
+    display: inline-block;
+    background-color: rgb(19, 24, 32);
+    color: white;
+    width: 30%;
+    height: 250px;
+    position: relative;
+    left: 15%;
+    top: 25px;
+}
+
+.StatsDashboard {
+    display: inline-block;
+    background-color: rgb(19, 24, 32);
+    color: white;
+    width: 30%;
+    height: 525px;
+    position: relative;
+    left: 25%;
+    bottom: 249px;
 }

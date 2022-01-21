@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import Logo from '../logo.png';
 import Cookies from 'js-cookie';
 import { UserContext } from '../UserContext';
+import classes from './Css/Main.module.css'
 
 function NavigationBar() {
     const [user, setUser] = useContext(UserContext);

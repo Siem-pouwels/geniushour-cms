@@ -10,8 +10,10 @@ import SignUp from './components/SignUp';
 import Cookies from 'js-cookie';
 import ProjectsOverview from './components/ProjectsOverview';
 import ProjectsDetails from './components/ProjectsDetails';
+import ProjectsCreate from './components/ProjectsCreate';
 import StudentsOverview from './components/StudentsOverview';
 import StudentsDetails from './components/StudentsDetails';
+import ImgUpload from './components/ImgUpload';
 import { UserContext } from './UserContext';
 
 function App() {
