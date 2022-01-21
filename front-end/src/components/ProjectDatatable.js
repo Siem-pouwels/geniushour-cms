@@ -7,16 +7,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 export default function ProjectDatatable({ data }) {
   const columns = data[0] && Object.keys(data[0]);
 
-//   deleteProject = () => {
-//     this.setState({ lastId: 1});
-//     console.log(this.state.lastId)
-//     axios.post('http://localhost:8000/api/projects/delete/' + this.state.lastId)
-//         .then((res) => {
-//             console.log('Deleted!')
-//         }).catch((error) => {
-//             console.log(error)
-//         })
-// }
+  const deleteProject = (e) => {
+    console.log(e.target.value)
+    axios.post('http://localhost:8000/api/projects/delete/' + e.target.value)
+        .then((res) => {
+            console.log('Deleted!')
+        }).catch((error) => {
+            console.log(error)
+        })
+}
   return (
       <>
     <Table striped bordered hover variant="dark">
@@ -24,7 +23,7 @@ export default function ProjectDatatable({ data }) {
         <tr>
           {data[0] && columns.map((heading) => <th>{heading}</th>)}
           <th>Edit</th>
-          {/* <th>Delete</th> */}
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +34,7 @@ export default function ProjectDatatable({ data }) {
             ))}
 
             <td><Link to={`/projects/edit/${row["id"]}`}><Button variant="warning" value={row['id']}>Edit</Button></Link></td>
-            {/* <td><Button variant="danger" value={row['id']} onClick={deleteProject}>Delete</Button></td> */}
+            <td><Button variant="danger" value={row['id']} onClick={deleteProject}>Delete</Button></td>
           </tr>
         ))}
       </tbody>
