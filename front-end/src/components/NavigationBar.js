@@ -31,21 +31,42 @@ function NavigationBar() {
                         <Nav className="me-auto">
                             {user.isLoggedIn ? (
                                 <>
-                                    <LinkContainer to='/overview'>
-                                        <Nav.Link>Overview</Nav.Link>
-                                    </LinkContainer>
-                                    <LinkContainer to='/error'>
-                                        <Nav.Link>Error</Nav.Link>
-                                    </LinkContainer>
-                                    <LinkContainer to='/dashboard'>
-                                        <Nav.Link>Dashboard</Nav.Link>
-                                    </LinkContainer>
-                                    <LinkContainer to='/projects'>
-                                        <Nav.Link>Projects</Nav.Link>
-                                    </LinkContainer>
-                                    <LinkContainer to='/students'>
-                                        <Nav.Link>Students</Nav.Link>
-                                    </LinkContainer>
+                                    {user.role == "student" ? (
+                                        <>
+                                            <LinkContainer to='/overview'>
+                                                <Nav.Link>Overview</Nav.Link>
+                                            </LinkContainer>
+                                            <LinkContainer to='/projects'>
+                                                <Nav.Link>Projects</Nav.Link>
+                                            </LinkContainer>
+                                            <LinkContainer to='/student/dashboard'>
+                                                <Nav.Link>Dashboard</Nav.Link>
+                                            </LinkContainer>
+                                        </>
+                                    ) : (null)
+                                    }
+                                    {user.role == "teacher" ? (
+                                        <>
+                                            <LinkContainer to='/students'>
+                                                <Nav.Link>Students</Nav.Link>
+                                            </LinkContainer>
+                                            <LinkContainer to='/projects'>
+                                                <Nav.Link>Projects</Nav.Link>
+                                            </LinkContainer>
+                                            <LinkContainer to='/teacher/dashboard'>
+                                                <Nav.Link>Dashboard</Nav.Link>
+                                            </LinkContainer>
+                                        </>
+                                    ) : (null)
+                                    }
+                                    {user.role == "admin" ? (
+                                        <>
+                                            <LinkContainer to='/admin'>
+                                                <Nav.Link>Admin</Nav.Link>
+                                            </LinkContainer>
+                                        </>
+                                    ) : (null)
+                                    }
                                     <LinkContainer to='/'>
                                         <Nav.Link onClick={logout}>Logout</Nav.Link>
                                     </LinkContainer>

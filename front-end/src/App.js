@@ -13,8 +13,11 @@ import ProjectsDetails from './components/ProjectsDetails';
 import ProjectsCreate from './components/ProjectsCreate';
 import StudentsOverview from './components/StudentsOverview';
 import StudentsDetails from './components/StudentsDetails';
+import StudentDashboard from './components/DashboardStudent';
+import TeacherDashboard from './components/DashboardTeacher';
 import ImgUpload from './components/ImgUpload';
 import { UserContext } from './UserContext';
+import Admin from './components/Admin';
 
 function App() {
   const [user, setUser] = useContext(UserContext);
@@ -34,12 +37,13 @@ function App() {
         <Route path="/" element={<Home />} />
         {user.isLoggedIn ? (
           <>
+            <Route path="/img" element={<ImgUpload />} />
             {user.role == "student" ? (
               <>
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/projects" element={<ProjectsOverview />} />
-                <Route path="/projects/1" element={<ProjectsDetails />} />
-                {/* <Route path="/student-dashboard" element={<StudentDashboard />} /> */}
+                <Route path="/projects/:id" element={<ProjectsDetails />} />
+                <Route path="/student/dashboard" element={<StudentDashboard />} />
               </>
             ) : (null)
             }
@@ -47,16 +51,16 @@ function App() {
               <>
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/projects" element={<ProjectsOverview />} />
-                <Route path="/projects/1" element={<ProjectsDetails />} />
-                <Route path="/students" element={<StudentsOverview />} />
-                {/* <Route path="/teacher-dashboard" element={<TeacherDashboard />} /> */}
-                <Route path="/students/1" element={<StudentsDetails />} />
+                <Route path="/project/edit/:id" element={<ProjectsDetails />} />
+                <Route path="/project/create" element={<ProjectsCreate />} />
+                <Route path="/student" element={<StudentsOverview />} />
+                <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
               </>
             ) : (null)
             }
             {user.role == "admin" ? (
               <>
-                {/* <Route path="/admin" element={<Admin />} /> */}
+                <Route path="/admin" element={<Admin />} />
               </>
             ) : (null)
             }
