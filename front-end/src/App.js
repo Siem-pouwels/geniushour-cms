@@ -53,7 +53,7 @@ function App() {
                 <Route path="/projects" element={<ProjectsOverview />} />
                 <Route path="/project/edit/:id" element={<ProjectsDetails />} />
                 <Route path="/project/create" element={<ProjectsCreate />} />
-                <Route path="/student" element={<StudentsOverview />} />
+                <Route path="/students" element={<StudentsOverview />} />
                 <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
               </>
             ) : (null)
