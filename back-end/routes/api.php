@@ -6,6 +6,7 @@ use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\StudentGroupsController;
 use App\Http\Controllers\TeacherGroupsController;
 use App\Http\Controllers\FilesController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -56,9 +57,15 @@ Route::group(['prefix' => 'group'], function () {
     Route::post('create', [GroupsController::class, 'create']);
 });
 
-Route::group(['prefix' => 'student'], function () {
+Route::group(['prefix' => 'studentgroup'], function () {
     Route::get('', [StudentGroupsController::class, 'get']);
+    Route::get('/{id}', [StudentGroupsController::class, 'getById']);
     Route::post('create/{id}', [StudentGroupsController::class, 'create']);
+});
+
+Route::group(['prefix' => 'users'], function () {
+    Route::get('/students', [UsersController::class, 'getStudents']);
+    Route::get('/teachers', [UsersController::class, 'getTeachers']);
 });
 
 Route::group(['prefix' => 'teacher'], function () {
