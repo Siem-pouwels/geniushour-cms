@@ -62,16 +62,21 @@ Route::group(['prefix' => 'studentgroup'], function () {
     Route::get('', [StudentGroupsController::class, 'get']);
     Route::get('/{id}', [StudentGroupsController::class, 'getById']);
     Route::post('create/{id}', [StudentGroupsController::class, 'create']);
-});
-
-Route::group(['prefix' => 'users'], function () {
-    Route::get('/students', [UsersController::class, 'getStudents']);
-    Route::get('/teachers', [UsersController::class, 'getTeachers']);
+    Route::post('create', [GroupsController::class, 'create']);
+    Route::post('createmore', [StudentGroupsController::class, 'createmore']);
 });
 
 Route::group(['prefix' => 'teachergroup'], function () {
     Route::get('', [TeacherGroupsController::class, 'get']);
     Route::post('create/{id}', [TeacherGroupsController::class, 'create']);
+    Route::post('create', [GroupsController::class, 'create']);
+    Route::post('createmore', [TeacherGroupsController::class, 'createmore']);
+});
+
+
+Route::group(['prefix' => 'users'], function () {
+    Route::get('/students', [UsersController::class, 'getStudents']);
+    Route::get('/teachers', [UsersController::class, 'getTeachers']);
 });
 
 Route::group(['prefix' => 'projectProgress'], function () {
