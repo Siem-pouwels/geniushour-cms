@@ -73,6 +73,14 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::post('create/{id}', [TeacherGroupsController::class, 'create']);
 });
 
+Route::group(['prefix' => 'projectProgress'], function () {
+    Route::get('', [ProjectsProgressController::class, 'get']);
+    Route::get('/{id}', [ProjectsProgressController::class, 'getProjectProgress']);
+    Route::post('create', [ProjectsProgressController::class, 'create']);
+    Route::post('edit/{id}', [ProjectsProgressController::class, 'edit']);
+    Route::post('delete/{id}', [ProjectsProgressController::class, 'delete']);
+});
+
 
 Route::group(['prefix' => 'files'], function () {
     Route::post('', [FilesController::class, 'post']);
