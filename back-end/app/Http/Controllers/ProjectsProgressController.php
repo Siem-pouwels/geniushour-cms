@@ -21,8 +21,8 @@ class ProjectsProgressController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'finished' => 'required|string',
-            'amountofhours' => 'required|string',
+            'finished' => 'required|int',
+            'amountofhours' => 'required|int',
             'title' => 'required|string',
             'description' => 'required|string',
             'teachergroup_id' => 'required|int',

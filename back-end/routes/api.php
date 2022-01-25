@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ProjectsProgressController;
 use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\StudentGroupsController;
 use App\Http\Controllers\TeacherGroupsController;
