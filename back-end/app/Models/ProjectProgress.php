@@ -11,8 +11,11 @@ class ProjectProgress extends Model
     protected $table = 'projectprogress';
     protected $fillable = [
         'finished',
-        'amountOfHours',
+        'amountofhours',
         'title',
         'description',
+        'teachergroups_id',
+        'studentgroups_id',
+        'project_id'
     ];
 }

@@ -25,8 +25,8 @@ class ProjectsProgressController extends Controller
             'amountofhours' => 'required|int',
             'title' => 'required|string',
             'description' => 'required|string',
-            'teachergroup_id' => 'required|int',
-            'studentgroup_id' => 'required|int',
+            'teachergroups_id' => 'required|int',
+            'studentgroups_id' => 'required|int',
             'project_id' => 'required|int'
         ]);
 
@@ -45,8 +45,8 @@ class ProjectsProgressController extends Controller
             'amountofhours' => $request['amountofhours'],
             'title' => $request['title'],
             'description' => $request['description'],
-            'teachergroup_id' => $request['teachergroup_id'],
-            'studentgroup_id' => $request['studentgroup_id'],
+            'teachergroups_id' => $request['teachergroups_id'],
+            'studentgroups_id' => $request['studentgroups_id'],
             'project_id' => $request['project_id']
         ]);
 
@@ -74,8 +74,8 @@ class ProjectsProgressController extends Controller
             'amountofhours' => 'required|string',
             'title' => 'required|string',
             'description' => 'required|string',
-            'teachergroup_id' => 'required|int',
-            'studentgroup_id' => 'required|int',
+            'teachergroups_id' => 'required|int',
+            'studentgroups_id' => 'required|int',
             'project_id' => 'required|int'
             
         ]);

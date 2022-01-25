@@ -69,7 +69,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/teachers', [UsersController::class, 'getTeachers']);
 });
 
-Route::group(['prefix' => 'teacher'], function () {
+Route::group(['prefix' => 'teachergroup'], function () {
     Route::get('', [TeacherGroupsController::class, 'get']);
     Route::post('create/{id}', [TeacherGroupsController::class, 'create']);
 });
