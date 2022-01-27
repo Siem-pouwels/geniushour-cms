@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'email',
+        'addition',
         'role',
         'surname',
         'password',
@@ -35,6 +36,13 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function getFullNameAttribute()
+    {
+        $fullname = ucfirst($this->first_name) . ' ';
+        if ($this->addition) $fullname = $fullname . ucfirst($this->addition) . ' ';
+        $fullname = $fullname . ucfirst($this->surname);
+        return $fullname;
+    }
 
     /**
      * The attributes that should be cast.

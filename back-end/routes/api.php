@@ -75,6 +75,8 @@ Route::group(['prefix' => 'teachergroup'], function () {
 
 
 Route::group(['prefix' => 'users'], function () {
+    Route::get('/studentsdropdown', [UsersController::class, 'getDropdownStudents']);
+    Route::get('/teachersdropdown', [UsersController::class, 'getDropdownTeachers']);
     Route::get('/students', [UsersController::class, 'getStudents']);
     Route::get('/teachers', [UsersController::class, 'getTeachers']);
 });
