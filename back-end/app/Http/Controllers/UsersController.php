@@ -19,8 +19,7 @@ class UsersController extends Controller
     {
         return response()->json(User::where('role', '=', 'teacher')->get());
     }
-
-<<<<<<< Updated upstream
+    
     public function getDropdownStudents()
     {
         $users = User::where('role', '=', 'student')->get();
@@ -37,7 +36,8 @@ class UsersController extends Controller
             $model->setAppends(['full_name']);
         });
         return response()->json($users);
-=======
+    }
+
     public function InsertMultiple(Request $request)
     {
         // if the validator fails return 400 bad request
@@ -259,6 +259,5 @@ class UsersController extends Controller
         ];
 
         return response($response, 201);
->>>>>>> Stashed changes
     }
 }
