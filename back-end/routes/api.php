@@ -79,6 +79,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/teachersdropdown', [UsersController::class, 'getDropdownTeachers']);
     Route::get('/students', [UsersController::class, 'getStudents']);
     Route::get('/teachers', [UsersController::class, 'getTeachers']);
+    Route::post('/csvUpload', [UsersController::class, 'InsertMultiple']);
 });
 
 Route::group(['prefix' => 'projectProgress'], function () {
