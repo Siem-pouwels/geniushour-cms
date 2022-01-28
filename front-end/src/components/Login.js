@@ -16,10 +16,6 @@ function Login() {
     const env = new Environment;
     let navigate = useNavigate();
 
-    useEffect(() => {
-        if (user.isLoggedIn) navigate('/')
-    }, []);
-
     function handleSubmit(event) {
         event.preventDefault();
         const user = { email: email, password: password };
@@ -32,11 +28,13 @@ function Login() {
             });
             enqueueSnackbar('Succesfully logged in!', {
                 variant: 'success'
-              });
+            });
             navigate('/')
-        }, (error) => enqueueSnackbar('Something went wrong!', {
-            variant: 'error'
-          }))
+        }).catch(function (error) {
+            enqueueSnackbar(error.response.data.message, {
+                variant: 'error'
+            })
+        });
     }
     return (
         <>
@@ -71,13 +69,7 @@ function Login() {
                         </Form>
                     </Card.Body>
                 </Card >
-            ) : (
-                <Container>
-                    <Row>
-                        <Col><h1>404 not found</h1></Col>
-                    </Row>
-                </Container>
-            )
+            ) : (navigate('/'))
             }
         </>
     )
