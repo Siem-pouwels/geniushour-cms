@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 
 class ProjectsController extends Controller
@@ -111,6 +112,45 @@ class ProjectsController extends Controller
         $response = [
             'message' => "project has been succesfully deleted."
         ];
+
+        return response($response, 201);
+    }
+
+    public function getStudentDashboard($id)
+    {
+        $hours = DB::table('student_hours')->where('student_hours.user_id', '=', $id)->get();
+        
+        $projects = DB::table('projects')
+        ->join('projectprogress', 'projects.id', '=', 'projectprogress.project_id')
+        ->join('groups', 'projectprogress.studentgroups_id', '=', 'groups.id')
+        ->join('studentgroups', 'groups.id', '=', 'studentgroups.group_id')
+        ->join('users', 'studentgroups.user_id', '=', 'users.id')
+        ->where('users.id', '=', $id)
+        ->get(['projects.id','projects.name','projects.category','projects.timeSpent','projects.timeTotal','projects.summary']);
+
+        $projects = json_decode($projects, true);
+
+        $arrayCount= 0 ;
+
+        foreach($projects as $id => $key)
+        {
+
+            $comments = DB::table('projectcomments')
+            ->join('users', 'projectcomments.user_id', '=', 'users.id')
+            ->join('projectprogress', 'projectcomments.projectprogress_id', '=', 'projectprogress.id')
+            ->join('projects', 'projectprogress.project_id', '=', 'projects.id')
+            ->where('projects.id', '=', $key['id'])
+            ->get(['projectcomments.id','projectcomments.title','projectcomments.text','users.first_name']);
+
+            $projects[$arrayCount]["comments"] = $comments;
+            $arrayCount++;
+        }
+
+        $response = [
+            'project' => $projects,
+            'hours' => $hours
+        ];
+
 
         return response($response, 201);
     }
