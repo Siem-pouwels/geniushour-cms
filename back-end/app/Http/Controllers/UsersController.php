@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\StudentHour;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -252,10 +253,16 @@ class UsersController extends Controller
                 'role' => 'student',
                 'password' => Hash::make(Str::random(12))
             ]);
+
+            $studentHour = StudentHour::create([
+                'user_id' => $user->id,
+                'hours' => 0
+            ]);
         }
 
         $response = [
-            'user' => $user
+            'user' => $user,
+            'studentHour' => $studentHour
         ];
 
         return response($response, 201);

@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProjectComments extends Model
+class StudentHour extends Model
 {
     use HasFactory;
-    protected $table = 'projectcomments';
+    protected $table = 'student_hours';
     protected $fillable = [
-        'title',
-        'text',
         'user_id',
-        'projectprogress_id',
+        'hours'
     ];
 }

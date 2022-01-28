@@ -6,6 +6,7 @@ use App\Http\Controllers\ProjectsProgressController;
 use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\StudentGroupsController;
 use App\Http\Controllers\TeacherGroupsController;
+use App\Http\Controllers\ProjectCommentsController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
@@ -48,6 +49,7 @@ Route::group(['prefix' => 'projects'], function () {
     Route::post('create', [ProjectsController::class, 'create']);
     Route::post('edit/{id}', [ProjectsController::class, 'edit']);
     Route::post('delete/{id}', [ProjectsController::class, 'delete']);
+    Route::get('studentdashboard/{id}', [ProjectsController::class, 'getStudentDashboard']);
 });
 
 Route::group(['prefix' => 'group'], function () {
@@ -93,4 +95,8 @@ Route::group(['prefix' => 'projectProgress'], function () {
 
 Route::group(['prefix' => 'files'], function () {
     Route::post('', [FilesController::class, 'post']);
+});
+
+Route::group(['prefix' => 'projectComments'], function () {
+    Route::post('create', [ProjectCommentsController::class, 'create']);
 });
