@@ -42,6 +42,9 @@ function NavigationBar() {
                                             <LinkContainer to='/student/dashboard'>
                                                 <Nav.Link>Dashboard</Nav.Link>
                                             </LinkContainer>
+                                            <LinkContainer to='/studentgroup/create'>
+                                                <Nav.Link>Create studentgroup</Nav.Link>
+                                            </LinkContainer>
                                         </>
                                     ) : (null)
                                     }
@@ -55,6 +58,9 @@ function NavigationBar() {
                                             </LinkContainer>
                                             <LinkContainer to='/teacher/dashboard'>
                                                 <Nav.Link>Dashboard</Nav.Link>
+                                            </LinkContainer>
+                                            <LinkContainer to='/studentgroup/create'>
+                                                <Nav.Link>Create studentgroup</Nav.Link>
                                             </LinkContainer>
                                         </>
                                     ) : (null)

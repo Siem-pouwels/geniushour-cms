@@ -14,6 +14,10 @@ function Login() {
     const env = new Environment;
     let navigate = useNavigate();
 
+    useEffect(() => {
+        if (user.isLoggedIn) navigate('/')
+    }, []);
+
     function handleSubmit(event) {
         event.preventDefault();
         const user = { email: email, password: password };

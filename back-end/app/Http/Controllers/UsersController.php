@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\LoginDetailsNotification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -252,6 +253,7 @@ class UsersController extends Controller
                 'role' => 'student',
                 'password' => Hash::make(Str::random(12))
             ]);
+            $user->notify(new LoginDetailsNotification($user));
         }
 
         $response = [
