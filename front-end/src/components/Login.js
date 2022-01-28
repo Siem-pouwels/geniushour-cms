@@ -6,8 +6,10 @@ import axios from 'axios'
 import Cookies from 'js-cookie';
 import Environment from '../Environment';
 import { UserContext } from "../UserContext";
+import { useSnackbar } from 'notistack';
 
 function Login() {
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const [user, setUser] = useContext(UserContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,8 +26,13 @@ function Login() {
                 role: Cookies.get("Role"),
                 isLoggedIn: true
             });
+            enqueueSnackbar('Succesfully logged in!', {
+                variant: 'success'
+              });
             navigate('/')
-        }, (error) => console.log(error))
+        }, (error) => enqueueSnackbar('Something went wrong!', {
+            variant: 'error'
+          }))
     }
     return (
         <>

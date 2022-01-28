@@ -6,8 +6,10 @@ import Logo from '../logo.png';
 import Cookies from 'js-cookie';
 import { UserContext } from '../UserContext';
 import classes from './Css/Main.module.css'
+import { useSnackbar } from 'notistack';
 
 function NavigationBar() {
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const [user, setUser] = useContext(UserContext);
     let navigate = useNavigate();
 
@@ -17,6 +19,9 @@ function NavigationBar() {
         if (Cookies.get("Role")) Cookies.remove("Role")
         setUser({ role: null, isLoggedIn: false })
         navigate('/login')
+        enqueueSnackbar('You are logged out', {
+            variant: 'warning'
+          });
     }
 
     return (
