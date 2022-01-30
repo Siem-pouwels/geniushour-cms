@@ -18,6 +18,7 @@ import TeacherDashboard from './components/DashboardTeacher';
 import ImgUpload from './components/ImgUpload';
 import { UserContext } from './UserContext';
 import Admin from './components/Admin';
+import PasswordReset from './components/PasswordReset';
 
 function App() {
   const [user, setUser] = useContext(UserContext);
@@ -51,7 +52,7 @@ function App() {
               <>
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/projects" element={<ProjectsOverview />} />
-                <Route path="/project/edit/:id" element={<ProjectsDetails />} />
+                <Route path="/projects/edit/:id" element={<ProjectsDetails />} />
                 <Route path="/project/create" element={<ProjectsCreate />} />
                 <Route path="/students" element={<StudentsOverview />} />
                 <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
@@ -69,6 +70,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         )}
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/password/reset" element={<PasswordReset />} />
 
         <Route path="*" element={<Login />} />
       </Routes>

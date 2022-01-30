@@ -82,6 +82,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/students', [UsersController::class, 'getStudents']);
     Route::get('/teachers', [UsersController::class, 'getTeachers']);
     Route::post('/csvUpload', [UsersController::class, 'InsertMultiple']);
+    Route::post('/password-reset', [AuthController::class, 'resetPassword']);
 });
 
 Route::group(['prefix' => 'projectProgress'], function () {

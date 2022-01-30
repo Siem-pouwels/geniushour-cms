@@ -21,7 +21,7 @@ function NavigationBar() {
         navigate('/login')
         enqueueSnackbar('You are logged out', {
             variant: 'warning'
-          });
+        });
     }
 
     return (
@@ -78,6 +78,9 @@ function NavigationBar() {
                                         </>
                                     ) : (null)
                                     }
+                                    <LinkContainer to='/password/reset'>
+                                        <Nav.Link>Reset your password</Nav.Link>
+                                    </LinkContainer>
                                     <LinkContainer to='/'>
                                         <Nav.Link onClick={logout}>Logout</Nav.Link>
                                     </LinkContainer>

@@ -10,36 +10,35 @@ export default function ProjectDatatable({ data }) {
   const deleteProject = (e) => {
     console.log(e.target.value)
     axios.post('http://localhost:8000/api/projects/delete/' + e.target.value)
-        .then((res) => {
-            console.log('Deleted!')
-        }).catch((error) => {
-            console.log(error)
-        })
-}
+      .then((res) => {
+        console.log('Deleted!')
+      }).catch((error) => {
+        console.log(error)
+      })
+  }
   return (
-      <>
-    <Table striped bordered hover variant="dark">
-      <thead>
-        <tr>
-          {data[0] && columns.map((heading) => <th>{heading}</th>)}
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row) => (
+    <>
+      <Table striped bordered hover variant="dark">
+        <thead>
           <tr>
-            {columns.map((column) => (
-              <td>{row[column]}</td>
-            ))}
-
-            <td><Link to={`/projects/edit/${row["id"]}`}><Button variant="warning" value={row['id']}>Edit</Button></Link></td>
-            <td><Button variant="danger" value={row['id']} onClick={deleteProject}>Delete</Button></td>
+            {data[0] && columns.map((heading) => <th>{heading}</th>)}
+            <th>&nbsp;&nbsp;&nbsp;✏</th>
+            <th>&nbsp;&nbsp;&nbsp;❌</th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
-    {/* <Modal show={this.state.show} onHide={this.handleClose}>
+        </thead>
+        <tbody>
+          {data.map((row) => (
+            <tr>
+              {columns.map((column) => (
+                <td>{row[column]}</td>
+              ))}
+              <td><Link to={`/projects/edit/${row["id"]}`}><Button variant="warning" value={row['id']}>✏</Button></Link></td>
+              <td><Button variant="danger" value={row['id']} onClick={deleteProject}>❌</Button></td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      {/* <Modal show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>

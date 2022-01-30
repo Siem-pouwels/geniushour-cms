@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -71,5 +72,27 @@ class AuthController extends Controller
         return [
             'message' => 'Logged out'
         ];
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|confirmed|min:6',
+            'password_confirmation' => 'required| min:6'
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return response()->json($errors, 400);
+        }
+
+        $id = auth('sanctum')->user()->id;
+        $user = User::find($id);
+        $user->password = bcrypt($request->password);
+        $user->save();
+        $response = [
+            'message' => "Succesfully changed the password",
+        ];
+        return response()->json($response);
     }
 }
