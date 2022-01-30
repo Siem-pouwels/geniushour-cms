@@ -50,6 +50,7 @@ Route::group(['prefix' => 'projects'], function () {
     Route::post('edit/{id}', [ProjectsController::class, 'edit']);
     Route::post('delete/{id}', [ProjectsController::class, 'delete']);
     Route::get('studentdashboard/{id}', [ProjectsController::class, 'getStudentDashboard']);
+    Route::get('teacherdashboard/{id}', [ProjectsController::class, 'getTeacherDashboard']);
 });
 
 Route::group(['prefix' => 'group'], function () {

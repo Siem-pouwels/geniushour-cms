@@ -259,7 +259,7 @@ class UsersController extends Controller
                 'user_id' => $user->id,
                 'hours' => 0
             ]);
-            $user->notify(new LoginDetailsNotification($user));
+            //$user->notify(new LoginDetailsNotification($user));
         }
 
         $response = [
