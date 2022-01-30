@@ -26,7 +26,6 @@ class ProjectsController extends Controller
             'name' => 'required|string|min:3',
             'category' => 'required|string',
             'timeSpent' => 'integer',
-            'timeTotal' => 'integer',
             'summary' => 'string'
         ]);
 
@@ -37,13 +36,11 @@ class ProjectsController extends Controller
             $errors = $validator->errors();
 
             return response()->json($errors, 400);
-
         }
 
         $project = Project::create([
             'name' => $request['name'],
             'category' => $request['category'],
-            'timeSpent' => $request['timeSpent'],
             'timeTotal' => $request['timeTotal'],
             'summary' => $request['summary']
         ]);
@@ -82,7 +79,6 @@ class ProjectsController extends Controller
             $errors = $validator->errors();
 
             return response()->json($errors, 400);
-
         }
 
         $project = Project::find($id);
@@ -119,28 +115,26 @@ class ProjectsController extends Controller
     public function getStudentDashboard($id)
     {
         $hours = DB::table('student_hours')->where('student_hours.user_id', '=', $id)->get();
-        
+
         $projects = DB::table('projects')
-        ->join('projectprogress', 'projects.id', '=', 'projectprogress.project_id')
-        ->join('groups', 'projectprogress.studentgroups_id', '=', 'groups.id')
-        ->join('studentgroups', 'groups.id', '=', 'studentgroups.group_id')
-        ->join('users', 'studentgroups.user_id', '=', 'users.id')
-        ->where('users.id', '=', $id)
-        ->get(['projects.id','projects.name','projects.category','projects.timeSpent','projects.timeTotal','projects.summary']);
+            ->join('projectprogress', 'projects.id', '=', 'projectprogress.project_id')
+            ->join('groups', 'projectprogress.studentgroups_id', '=', 'groups.id')
+            ->join('studentgroups', 'groups.id', '=', 'studentgroups.group_id')
+            ->join('users', 'studentgroups.user_id', '=', 'users.id')
+            ->where('users.id', '=', $id)
+            ->get(['projects.id', 'projects.name', 'projects.category', 'projects.timeSpent', 'projects.timeTotal', 'projects.summary']);
 
         $projects = json_decode($projects, true);
 
-        $arrayCount= 0 ;
+        $arrayCount = 0;
 
-        foreach($projects as $id => $key)
-        {
-
+        foreach ($projects as $id => $key) {
             $comments = DB::table('projectcomments')
-            ->join('users', 'projectcomments.user_id', '=', 'users.id')
-            ->join('projectprogress', 'projectcomments.projectprogress_id', '=', 'projectprogress.id')
-            ->join('projects', 'projectprogress.project_id', '=', 'projects.id')
-            ->where('projects.id', '=', $key['id'])
-            ->get(['projectcomments.id','projectcomments.title','projectcomments.text','users.first_name']);
+                ->join('users', 'projectcomments.user_id', '=', 'users.id')
+                ->join('projectprogress', 'projectcomments.projectprogress_id', '=', 'projectprogress.id')
+                ->join('projects', 'projectprogress.project_id', '=', 'projects.id')
+                ->where('projects.id', '=', $key['id'])
+                ->get(['projectcomments.id', 'projectcomments.title', 'projectcomments.text', 'users.first_name']);
 
             $projects[$arrayCount]["comments"] = $comments;
             $arrayCount++;

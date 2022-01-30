@@ -16,7 +16,6 @@ class Project extends Model
     protected $fillable = [
         'name',
         'category',
-        'timeSpent',
         'timeTotal',
         'summary',
     ];
