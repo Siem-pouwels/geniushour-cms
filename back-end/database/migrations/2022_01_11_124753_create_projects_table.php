@@ -17,7 +17,6 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('category');
-            $table->integer('timeSpent');
             $table->integer('timeTotal');
             $table->string('summary');
             $table->timestamps();
