@@ -17,8 +17,6 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->string('imageURL');
             $table->string('name');
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
