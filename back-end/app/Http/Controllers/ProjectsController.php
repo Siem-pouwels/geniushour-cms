@@ -25,7 +25,6 @@ class ProjectsController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:3',
             'category' => 'required|string',
-            'timeSpent' => 'integer',
             'summary' => 'string'
         ]);
 
@@ -122,7 +121,7 @@ class ProjectsController extends Controller
             ->join('studentgroups', 'groups.id', '=', 'studentgroups.group_id')
             ->join('users', 'studentgroups.user_id', '=', 'users.id')
             ->where('users.id', '=', $id)
-            ->get(['projects.id', 'projects.name', 'projects.category', 'projects.timeSpent', 'projects.timeTotal', 'projects.summary']);
+            ->get(['projects.id', 'projects.name', 'projects.category', 'projects.timeTotal', 'projects.summary']);
 
         $projects = json_decode($projects, true);
 
@@ -145,6 +144,84 @@ class ProjectsController extends Controller
             'hours' => $hours
         ];
 
+
+        return response($response, 201);
+    }
+
+    public function getTeacherDashboard($id)
+    {
+        $groupids = DB::table('users')
+        ->join('teachergroups', 'users.id', '=', 'teachergroups.user_id')
+        ->join('groups', 'teachergroups.group_id', '=', 'groups.id')
+        ->where('users.id', '=', $id)
+        ->get(['groups.id']);
+        
+        $groupids = json_decode($groupids, true);
+
+        $allstudents = [];
+
+        foreach($groupids as $id =>$key)
+        {
+            $students = DB::table('users')
+            ->join('studentgroups', 'users.id', '=', 'studentgroups.user_id')
+            ->join('groups', 'studentgroups.group_id', '=', 'groups.id')
+            ->join('projectprogress', 'groups.id', '=', 'projectprogress.studentgroups_id')
+            ->where('projectprogress.teachergroups_id', '=', $key['id'])
+            ->get(['users.id','users.first_name','users.addition','users.surname','users.student_number','users.email',]);
+
+            foreach($students as $students =>$key)
+            {
+                array_push($allstudents, $key);
+            }
+            
+        }
+
+        $allstudents = array_map("unserialize", array_unique(array_map("serialize", $allstudents)));
+
+        $allproject = [];
+
+        $amountPerProject = [];
+
+        $arrayCount=0;
+
+        foreach($groupids as $id =>$key)
+        {
+            $projects = DB::table('projects')
+            ->join('projectprogress', 'projects.id', '=', 'projectprogress.project_id')
+            ->join('groups', 'projectprogress.teachergroups_id', '=', 'groups.id')
+            ->where('projectprogress.teachergroups_id', '=', $key['id'])
+            ->get(['projects.id','projects.name','projects.category','projects.timeTotal','projects.summary']);
+
+            $projects = json_decode($projects, true);
+
+            $amountPerProject = DB::table('users')
+            ->join('studentgroups', 'users.id', '=', 'studentgroups.user_id')
+            ->join('groups', 'studentgroups.group_id', '=', 'groups.id')
+            ->join('projectprogress', 'groups.id', '=', 'projectprogress.studentgroups_id')
+            ->join('projects', 'projectprogress.project_id', '=', 'projects.id')
+            ->where('projects.id', '=', $projects[0]['id'])
+            ->get(['users.id','users.first_name']);
+
+            $amountPerProject = json_decode($amountPerProject, true);
+
+            $amountPerProject = array_map("unserialize", array_unique(array_map("serialize", $amountPerProject)));
+
+            $amountPerProject = count($amountPerProject);
+
+            foreach($projects as $project =>$key)
+            {
+                array_push($allproject, $key);
+
+                $allproject[$arrayCount]["amountOfStudents"] = $amountPerProject;
+
+                $arrayCount++;
+            }
+        }
+        
+        $response = [
+            'students' => $allstudents,
+            'projects' => $allproject,
+        ];
 
         return response($response, 201);
     }

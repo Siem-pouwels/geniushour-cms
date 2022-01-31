@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TeacherGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 class TeacherGroupsController extends Controller
 {
@@ -75,5 +76,12 @@ class TeacherGroupsController extends Controller
         ];
 
         return response($response, 201);
+    }
+
+    public function getUsers($id)
+    {
+        return response()->json(User::join('teachergroups', 'users.id', '=', 'teachergroups.user_id')
+        ->join('groups', 'teachergroups.group_id', '=', 'groups.id')
+        ->where('groups.id', '=', $id)->get());
     }
 }
