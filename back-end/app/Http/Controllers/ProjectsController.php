@@ -25,7 +25,6 @@ class ProjectsController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:3',
             'category' => 'required|string',
-            'timeSpent' => 'integer',
             'summary' => 'string'
         ]);
 
@@ -122,7 +121,7 @@ class ProjectsController extends Controller
             ->join('studentgroups', 'groups.id', '=', 'studentgroups.group_id')
             ->join('users', 'studentgroups.user_id', '=', 'users.id')
             ->where('users.id', '=', $id)
-            ->get(['projects.id', 'projects.name', 'projects.category', 'projects.timeSpent', 'projects.timeTotal', 'projects.summary']);
+            ->get(['projects.id', 'projects.name', 'projects.category', 'projects.timeTotal', 'projects.summary']);
 
         $projects = json_decode($projects, true);
 
