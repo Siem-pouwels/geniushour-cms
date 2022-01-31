@@ -16,7 +16,6 @@ class ProjectsSeeder extends Seeder
             DB::table('projects')->insert([
                 'name' => Str::random(10),
                 'category' => Str::random(10),
-                'timeSpent' => rand(0, 50),
                 'timeTotal' => rand(0, 50),
                 'summary' => Str::random(10),
                 'created_at' => Carbon::now(),
