@@ -78,9 +78,13 @@ Route::group(['prefix' => 'teachergroup'], function () {
 
 
 Route::group(['prefix' => 'users'], function () {
+    Route::get('', [UsersController::class, 'get']);
     Route::get('/studentsdropdown', [UsersController::class, 'getDropdownStudents']);
     Route::get('/teachersdropdown', [UsersController::class, 'getDropdownTeachers']);
     Route::get('/students', [UsersController::class, 'getStudents']);
+    Route::get('/{id}', [UsersController::class, 'getById']);
+    Route::post('/edit/{id}', [UsersController::class, 'edit']);
+    Route::post('/delete/{id}', [UsersController::class, 'delete']);
     Route::get('/teachers', [UsersController::class, 'getTeachers']);
     Route::post('/csvUpload', [UsersController::class, 'InsertMultiple']);
     Route::post('/password-reset', [AuthController::class, 'resetPassword']);
