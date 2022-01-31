@@ -150,7 +150,6 @@ class ProjectsController extends Controller
 
     public function getTeacherDashboard($id)
     {
-
         $groupids = DB::table('users')
         ->join('teachergroups', 'users.id', '=', 'teachergroups.user_id')
         ->join('groups', 'teachergroups.group_id', '=', 'groups.id')
@@ -189,9 +188,11 @@ class ProjectsController extends Controller
         {
             $projects = DB::table('projects')
             ->join('projectprogress', 'projects.id', '=', 'projectprogress.project_id')
-            ->join('groups', 'projects.id', '=', 'groups.id')
+            ->join('groups', 'projectprogress.teachergroups_id', '=', 'groups.id')
             ->where('projectprogress.teachergroups_id', '=', $key['id'])
             ->get(['projects.id','projects.name','projects.category','projects.timeTotal','projects.summary']);
+
+            return $projects;
 
             $projects = json_decode($projects, true);
 
