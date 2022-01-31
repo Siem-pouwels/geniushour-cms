@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProjectProgress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class ProjectsProgressController extends Controller
 {
@@ -119,5 +120,55 @@ class ProjectsProgressController extends Controller
         ];
 
         return response($response, 201);
+    }
+
+    public function overvieuw()
+    {
+        $projectProgress = DB::table('projectProgress')
+        ->get(['projectProgress.id', 'projectProgress.amountofhours', 'projectProgress.title', 'projectProgress.description','projectProgress.project_id','projectProgress.teachergroups_id','projectProgress.studentgroups_id','projectProgress.created_at']);
+
+        $projectProgress = json_decode($projectProgress, true);
+
+        $arrayCount=0;
+
+        foreach ($projectProgress as $id => $key) {
+
+            $teacher = DB::table('users')
+            ->join('teachergroups', 'users.id', '=', 'teachergroups.user_id')
+            ->join('groups', 'teachergroups.group_id', '=', 'groups.id')
+            ->join('projectProgress', 'groups.id', '=', 'projectProgress.teachergroups_id')
+            ->where('projectProgress.id', '=', $key['id'])
+            ->get(['users.id', 'users.first_name', 'users.addition', 'users.surname', 'users.student_number']);
+
+            $student = DB::table('users')
+            ->join('studentgroups', 'users.id', '=', 'studentgroups.user_id')
+            ->join('groups', 'studentgroups.group_id', '=', 'groups.id')
+            ->join('projectProgress', 'groups.id', '=', 'projectProgress.studentgroups_id')
+            ->where('projectProgress.id', '=', $key['id'])
+            ->get(['users.id', 'users.first_name', 'users.addition', 'users.surname', 'users.student_number']);
+
+            $theProject = DB::table('projects')
+            ->join('projectProgress', 'projects.id', '=', 'projectProgress.project_id')
+            ->where('projectProgress.id', '=', $key['id'])
+            ->get(['projects.id', 'projects.name', 'projects.category', 'projects.timeTotal', 'projects.summary','projects.created_at']);
+
+            $projectProgress[$arrayCount]["teachers"] = $teacher;
+            $projectProgress[$arrayCount]["students"] = $student;
+            $projectProgress[$arrayCount]["projects"] = $theProject;
+            $arrayCount++;
+        }
+
+        $response = [
+            'projectProgress' => $projectProgress
+        ];
+
+
+        return response($response, 201);
+
+    }
+
+    public function editInfo(Request $request)
+    {
+
     }
 }

@@ -65,15 +65,17 @@ Route::group(['prefix' => 'studentgroup'], function () {
     Route::get('', [StudentGroupsController::class, 'get']);
     Route::get('/{id}', [StudentGroupsController::class, 'getById']);
     Route::post('create/{id}', [StudentGroupsController::class, 'create']);
-    Route::post('create', [GroupsController::class, 'create']);
+    Route::post('create', [StudentGroupsController::class, 'create']);
     Route::post('createmore', [StudentGroupsController::class, 'createmore']);
+    Route::get('getUsers/{id}', [StudentGroupsController::class, 'getUsers']);
 });
 
 Route::group(['prefix' => 'teachergroup'], function () {
     Route::get('', [TeacherGroupsController::class, 'get']);
     Route::post('create/{id}', [TeacherGroupsController::class, 'create']);
-    Route::post('create', [GroupsController::class, 'create']);
+    Route::post('create', [TeacherGroupsController::class, 'create']);
     Route::post('createmore', [TeacherGroupsController::class, 'createmore']);
+    Route::get('getUsers/{id}', [TeacherGroupsController::class, 'getUsers']);
 });
 
 
@@ -96,6 +98,7 @@ Route::group(['prefix' => 'projectProgress'], function () {
     Route::post('create', [ProjectsProgressController::class, 'create']);
     Route::post('edit/{id}', [ProjectsProgressController::class, 'edit']);
     Route::post('delete/{id}', [ProjectsProgressController::class, 'delete']);
+    Route::post('overvieuw', [ProjectsProgressController::class, 'overvieuw']);
 });
 
 

@@ -192,8 +192,6 @@ class ProjectsController extends Controller
             ->where('projectprogress.teachergroups_id', '=', $key['id'])
             ->get(['projects.id','projects.name','projects.category','projects.timeTotal','projects.summary']);
 
-            return $projects;
-
             $projects = json_decode($projects, true);
 
             $amountPerProject = DB::table('users')
