@@ -27,7 +27,6 @@ class StudentGroupsController extends Controller
             $errors = $validator->errors();
 
             return response()->json($errors, 400);
-
         }
 
         $StudentGroup = StudentGroup::create([
@@ -54,13 +53,10 @@ class StudentGroupsController extends Controller
         if ($validator->fails()) {
 
             $errors = $validator->errors();
-
             return response()->json($errors, 400);
-
         }
 
-        foreach($request['user_id'] as $id => $key)
-        {
+        foreach ($request['user_id'] as $id => $key) {
             $StudentGroup = StudentGroup::create([
 
                 'group_id' => $request['group_id'],
@@ -69,7 +65,7 @@ class StudentGroupsController extends Controller
 
             ]);
         }
-        
+
         $response = [
             'StudentGroup' => $StudentGroup
         ];

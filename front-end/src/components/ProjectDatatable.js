@@ -38,20 +38,6 @@ export default function ProjectDatatable({ data }) {
           ))}
         </tbody>
       </Table>
-      {/* <Modal show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this project?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={this.deleteProject}>
-            Yes
-          </Button>
-          <Button variant="secondary" onClick={this.handleClose}>
-            No
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
     </>
   );
 }
