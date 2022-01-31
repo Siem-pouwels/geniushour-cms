@@ -80,7 +80,7 @@ Route::group(['prefix' => 'teachergroup'], function () {
 
 
 Route::group(['prefix' => 'users'], function () {
-    Route::get('', [UsersController::class, 'get']);
+    Route::get('/', [UsersController::class, 'allUsers']);
     Route::get('/studentsdropdown', [UsersController::class, 'getDropdownStudents']);
     Route::get('/teachersdropdown', [UsersController::class, 'getDropdownTeachers']);
     Route::get('/students', [UsersController::class, 'getStudents']);
