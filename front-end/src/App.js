@@ -18,10 +18,9 @@ import TeacherDashboard from './components/DashboardTeacher';
 import ImgUpload from './components/ImgUpload';
 import { UserContext } from './UserContext';
 import Admin from './components/Admin';
-import CreateUser from './components/CreateUser';
 import PasswordReset from './components/PasswordReset';
 
-function App() {
+export default function App() {
   const [user, setUser] = useContext(UserContext);
 
   useEffect(() => {
@@ -63,15 +62,14 @@ function App() {
             {user.role == "admin" ? (
               <>
                 <Route path="/admin" element={<Admin />} />
-                <Route path="/admin/create-user" element={<CreateUser />} />
                 <Route path="/students/:id" element={<StudentsDetails />} />
               </>
             ) : (null)
             }
           </>
         ) : (
-            <Route path="/login" element={<Login />} />
-          )}
+          <Route path="/login" element={<Login />} />
+        )}
         <Route path="/signup" element={<SignUp />} />
         <Route path="/password/reset" element={<PasswordReset />} />
 
@@ -80,5 +78,3 @@ function App() {
     </Router>
   )
 }
-
-export default App

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FormGroup, Form, FormCheck, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 import classes from './Css/student.module.css';
-
-
 import Datatable from './ProjectDatatable';
 
 function ProjectsOverview() {
+  const [user, setUser] = useContext(UserContext);
   const [data, setData] = useState([]);
   const [q, setQ] = useState('');
   const [searchColumns, setSearchColumns] = useState([
@@ -41,8 +41,13 @@ function ProjectsOverview() {
         placeholder='🔎Search...'
         onChange={(e) => setQ(e.target.value)}
       />
-      <Link to={'/projects/create'}><Button className={classes.OrangeBtn}>Create Project</Button></Link>
 
+      {user.role === "teacher" ? (
+        <>
+          <Link to={'/projects/create'}><Button>Create Project</Button></Link>
+        </>
+      ) : (null)
+      }
       <Form className={classes.FilterBoxes}>
         {columns &&
           columns.map((column) => (

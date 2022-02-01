@@ -1,11 +1,10 @@
-import React, { useState, Component } from 'react';
+import React from 'react';
 import { Table } from 'react-bootstrap';
 import Environment from '../Environment';
 import 'bootstrap/dist/css/bootstrap.css';
 
 export default function UserDatatable({ data }) {
     const columns = data[0] && Object.keys(data[0]);
-    const env = new Environment;
 
     return (
         <>
