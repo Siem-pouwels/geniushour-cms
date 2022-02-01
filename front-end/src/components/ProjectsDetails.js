@@ -15,7 +15,6 @@ function ProjectsDetails() {
   // Setting up state
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
-  const [timeSpent, setTimeSpent] = useState('');
   const [timeTotal, setTimeTotal] = useState('');
   const [summary, setSummary] = useState('');
 
@@ -26,7 +25,6 @@ function ProjectsDetails() {
         console.log(res.data)
         setName(res.data.name);
         setCategory(res.data.category);
-        setTimeSpent(res.data.timeSpent);
         setTimeTotal(res.data.timeTotal);
         setSummary(res.data.summary);
       }).catch((error) => {
@@ -37,7 +35,6 @@ function ProjectsDetails() {
 
   const OnChangeName = (e) => setName(e.target.value);
   const OnChangeCategory = (e) => setCategory(e.target.value);
-  const OnChangeTimeSpent = (e) => setTimeSpent(e.target.value);
   const OnChangeTimeTotal = (e) => setTimeTotal(e.target.value);
   const OnChangeSummary = (e) => setSummary(e.target.value);
 
@@ -45,7 +42,7 @@ function ProjectsDetails() {
     e.preventDefault()
 
     const projectObject = {
-      name, category, timeSpent, timeTotal, summary
+      name, category, timeTotal, summary
     }
     //makes the value into object
     console.log(projectObject);
@@ -84,11 +81,6 @@ function ProjectsDetails() {
               <Form.Label>Category</Form.Label>
             </div>
             <input type="text" value={category} onChange={OnChangeCategory} />
-            <br></br>
-            <div>
-              <Form.Label>Time Spent</Form.Label>
-            </div>
-            <input type="number" value={timeSpent} onChange={OnChangeTimeSpent} />
             <br></br>
             <div>
               <Form.Label>Time Total</Form.Label>

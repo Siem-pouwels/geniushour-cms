@@ -16,7 +16,6 @@ import StudentsDetails from './components/StudentsDetails';
 import StudentDashboard from './components/DashboardStudent';
 import TeacherDashboard from './components/DashboardTeacher';
 import ImgUpload from './components/ImgUpload';
-import StudentGroups from './components/StudentGroups';
 import { UserContext } from './UserContext';
 import Admin from './components/Admin';
 import CreateUser from './components/CreateUser';
@@ -45,9 +44,7 @@ function App() {
               <>
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/projects" element={<ProjectsOverview />} />
-                <Route path="/projects/:id" element={<ProjectsDetails />} />
                 <Route path="/student/dashboard" element={<StudentDashboard />} />
-                <Route path="/student/group" element={<StudentGroups />} />
               </>
             ) : (null)
             }
@@ -56,7 +53,7 @@ function App() {
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/projects" element={<ProjectsOverview />} />
                 <Route path="/projects/edit/:id" element={<ProjectsDetails />} />
-                <Route path="/project/create" element={<ProjectsCreate />} />
+                <Route path="/projects/create" element={<ProjectsCreate />} />
                 <Route path="/students" element={<StudentsOverview />} />
                 <Route path="/students/:id" element={<StudentsDetails />} />
                 <Route path="/teacher/dashboard" element={<TeacherDashboard />} />

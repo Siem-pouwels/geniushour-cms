@@ -41,7 +41,7 @@ function ProjectsOverview() {
         placeholder='🔎Search...'
         onChange={(e) => setQ(e.target.value)}
       />
-      <Link to={'/projects/create'}><Button>Create Project</Button></Link>
+      <Link to={'/projects/create'}><Button className={classes.OrangeBtn}>Create Project</Button></Link>
 
       <Form className={classes.FilterBoxes}>
         {columns &&

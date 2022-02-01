@@ -47,3 +47,8 @@
 .FilterBox {
     margin-right: 4%;
 }
+
+.OrangeBtn, .OrangeBtn:hover, .OrangeBtn:active, .OrangeBtn:visited {
+    background-color: #ff6c38 !important;
+    border: 2px solid #ff6c38 !important;
+}
