@@ -43,12 +43,6 @@ export default class CreateUser extends Component {
         axios.post('http://localhost:8000/api/users/create', user)
             .then(res => console.log(res.data));
         this.setState({ first_name: '', addition: '', surname: '', role: '', email: '' })
-
-        const options = [
-            { value: 'student', label: 'student' },
-            { value: 'teacher', label: 'teacher' },
-            { value: 'admin', label: 'admin' }
-        ]
     }
     render() {
         return (
@@ -73,7 +67,7 @@ export default class CreateUser extends Component {
                         </div>
                         <Form.Label>Role:</Form.Label>
                         <div>
-                            <Select value={this.state.role} options={options} />
+                            <Select value={this.state.role} />
                             <br></br>
                         </div>
                         <Form.Label>Email:</Form.Label>
