@@ -19,7 +19,7 @@ export default function Admin() {
     const [data, setData] = useState([]);
     const [q, setQ] = useState('');
     const [searchColumns, setSearchColumns] = useState([
-        'student_number',
+        'id',
         'first_name',
         'surname',
     ]);
@@ -37,8 +37,9 @@ export default function Admin() {
                     row[column]
                         .toString()
                         .toLowerCase()
-                        .indexOf(q.toLowerCase()) > -1,
-            ),
+                        .indexOf(q.toLowerCase()) > -1
+
+            )
         );
     }
 
