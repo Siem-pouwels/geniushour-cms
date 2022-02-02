@@ -66,7 +66,7 @@ export default class ProjectsCreate extends Component {
               <br></br>
             </div>
             <br></br>
-            <Button type="submit">
+            <Button className={classes.OrangeBtn} type="submit">
               Create Project
             </Button>
           </Form>

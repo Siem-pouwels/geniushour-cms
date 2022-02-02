@@ -52,3 +52,8 @@
     background-color: #ff6c38 !important;
     border: 2px solid #ff6c38 !important;
 }
+
+input[type=checkbox]:checked {
+    background-color: #ff6c38 !important;
+    border: 2px solid #ff6c38 !important;
+}

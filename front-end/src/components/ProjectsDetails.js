@@ -93,7 +93,7 @@ function ProjectsDetails() {
             <input type="text" value={summary} onChange={OnChangeSummary} />
             <br></br>
             <br></br>
-            <Button type="submit">
+            <Button className={classes.OrangeBtn} type="submit">
               Update Project
             </Button>
           </Form>

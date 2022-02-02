@@ -67,7 +67,7 @@ export default function PasswordReset() {
                             />
                         </Form.Group>
 
-                        <Button className={classes.BtnPrimary} variant="primary" type="submit">
+                        <Button className={classes.OrangeBtn} variant="primary" type="submit">
                             Change password
                         </Button>
                     </Form>

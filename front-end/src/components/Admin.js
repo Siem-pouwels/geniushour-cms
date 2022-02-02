@@ -94,7 +94,7 @@ export default function Admin() {
                                         />
 
                                     </Form.Group>
-                                    <Button variant="primary" type="submit">
+                                    <Button className={classes.OrangeBtn} type="submit">
                                         Add users
                                     </Button>
                                 </Form>
@@ -108,13 +108,14 @@ export default function Admin() {
                                     placeholder='🔎Search...'
                                     onChange={(e) => setQ(e.target.value)}
                                 />
-                                <Link to={'/users/create'}><Button>Create User</Button></Link>
+                                <Link to={'/users/create'}><Button className={classes.OrangeBtn}>Create User</Button></Link>
 
                                 <Form className={classes.FilterBoxes}>
                                     {columns &&
                                         columns.map((column) => (
                                             <FormGroup className={classes.FilterBox}>
                                                 <FormCheck
+                                                    className={classes.InputForm}
                                                     label={column}
                                                     type='checkbox'
                                                     checked={searchColumns.includes(column)}

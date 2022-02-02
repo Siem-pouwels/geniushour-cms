@@ -18,6 +18,7 @@ function ProjectsOverview() {
     fetch('http://localhost:8000/api/projects')
       .then((response) => response.json())
       .then((json) => setData(json));
+
   }, []);
 
   function search(rows) {
@@ -33,6 +34,7 @@ function ProjectsOverview() {
   }
 
   const columns = data[0] && Object.keys(data[0]);
+  console.log(columns)
   return (
     <Container>
       <input
@@ -44,7 +46,7 @@ function ProjectsOverview() {
 
       {user.role === "teacher" ? (
         <>
-          <Link to={'/projects/create'}><Button>Create Project</Button></Link>
+          <Link to={'/projects/create'}><Button className={classes.OrangeBtn}>Create Project</Button></Link>
         </>
       ) : (null)
       }

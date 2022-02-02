@@ -63,7 +63,7 @@ function Login() {
                                     onChange={e => setPassword(e.target.value)}
                                 />
                             </Form.Group>
-                            <Button className={classes.BtnPrimary} variant="primary" type="submit">
+                            <Button className={classes.OrangeBtn} variant="primary" type="submit">
                                 Login
                             </Button>
                         </Form>
